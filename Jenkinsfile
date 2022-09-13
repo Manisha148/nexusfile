@@ -9,7 +9,7 @@ pipeline{
   stages{
     stage('checkout'){
       steps{
-         checkout([$class: 'GitSCM', branches: [[name: '**']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: ''https://github.com/Manisha148/nexusfile.git]]])
+         checkout([$class: 'GitSCM', branches: [[name: '**']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/Manisha148/nexusfile.git']]])
       }
     }
      stage('Building image') {
