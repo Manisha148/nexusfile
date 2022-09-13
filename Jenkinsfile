@@ -3,13 +3,13 @@ pipeline{
   environment {
         imageName = "docker-image"
         registryCredentials = "nexus"
-        registry = "54.166.219.95:8085/"
+        registry = "http://54.166.219.95:8085/"
         dockerImage = ''
     }
   stages{
     stage('checkout'){
       steps{
-         checkout([$class: 'GitSCM', branches: [[name: '**']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/Manisha148/nexusfile.git']]])
+         checkout([$class: 'GitSCM', branches: [[name: '**']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: '']]])
       }
     }
      stage('Building image') {
@@ -22,12 +22,7 @@ pipeline{
     stage('Uploading to Nexus') {
      steps{  
          script {
-            <configuration>
-        <serverId>nexus</serverId>
-        <nexusUrl>http://http://54.166.219.95:8081//nexus/</http://54.166.219.95:8081/repository/pipeline21/>
-      </configuration> 
-           </script>
-           {
+             docker.withRegistry( 'http://'+registry, registryCredentials ) {
              dockerImage.push('latest')
           }
         }
