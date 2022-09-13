@@ -1,5 +1,5 @@
 stage('Build ImG From Docker file'){
-    sh 'docker build -t name .'
+    sh 'docker build -t python .'
 }
 stage('Push Docker Images to Nexus Registry'){
     sh 'docker push http://54.166.219.95:8081/repository/pipeline21/'
