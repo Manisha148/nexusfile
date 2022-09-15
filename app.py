@@ -1,6 +1,5 @@
-from flask import *
+from flask import Flask, render_template
 import os
-import socket
 
 app = Flask(__name__)
 
@@ -8,14 +7,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def mydef():
-    return "hello page"
-if __name__ == '__main__':
-    app.run()
-
-
+    return render_template("index.html")
+  
 PORT = int(os.environ.get("PORT", 8000))
-if __name__ == '__main__':
+if _name_ == '__main__':
     app.run(threaded=True,host='0.0.0.0',port=PORT)
-
-if __name__ == "__main__":
-  app.run(host='0.0.0.0', port=8000)
