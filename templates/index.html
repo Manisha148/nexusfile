@@ -1,2 +1,78 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+    <style>
+      body {
+        margin: 0;
+        background: rgba(0, 0, 0, 0.9);
+      }
+    </style>
+  </head>
+  <body>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.144.0/three.js"
+      integrity="sha512-sykSwuu4QWy5GL//gwZk/TWFO9IXveDwQB5TtR2LFxXt/WlMngMo2vwN/FV7Jr1cRAvkMnaqbTJvZIsdwLn5FA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script type="module">
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        25,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        10000
+      );
+
+      const renderer = new THREE.WebGLRenderer({ alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // const geometry = new THREE.BoxGeometry(1, 1, 1);
+      // const material = new THREE.MeshNormalMaterial({
+      //   wireframe: true
+      // });
+      // const cube = new THREE.Mesh(geometry, material);
+
+      // scene.add(cube);
+
+      const x = 0,
+        y = 0;
+
+      const heartShape = new THREE.Shape();
+
+      heartShape.moveTo(x + 5, y + 5);
+      heartShape.bezierCurveTo(x + 5, y + 5, x + 4, y, x, y);
+      heartShape.bezierCurveTo(x - 6, y, x - 6, y + 7, x - 6, y + 7);
+      heartShape.bezierCurveTo(x - 6, y + 11, x - 3, y + 15.4, x + 5, y + 19);
+      heartShape.bezierCurveTo(x + 12, y + 15.4, x + 16, y + 11, x + 16, y + 7);
+      heartShape.bezierCurveTo(x + 16, y + 7, x + 16, y, x + 10, y);
+      heartShape.bezierCurveTo(x + 7, y, x + 5, y + 5, x + 5, y + 5);
+
+      const geometry = new THREE.ShapeGeometry(heartShape);
+      const material = new THREE.MeshNormalMaterial();
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+
+      camera.position.z = 200;
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        mesh.rotation.x += 0.01;
+        mesh.rotation.y += 0.01;
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
+    </script>
+  </body>
 </html>
+
+
