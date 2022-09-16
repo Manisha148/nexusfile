@@ -9,7 +9,7 @@ pipeline{
   stages{
     stage('checkout'){
       steps{
-         checkout([$class: 'GitSCM', branches: [[name: '**']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/utsav1313/Task-Kubernets.git']]])
+         checkout([$class: 'GitSCM', branches: [[name: '**']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/Manisha148/nexusfile.git']]])
       }
     }
      stage('Building image') {
@@ -31,7 +31,7 @@ pipeline{
     stage('Pre Prod..') {
      steps{  
          script {
-             sh ' docker run -it -d -p 9090:9090 --name demo localhost:9091/docker-image'
+             sh ' docker run -it -d -p 9090:9090 --name demo localhost:8085/docker-image'
         }
       }
     }
